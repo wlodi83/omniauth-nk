@@ -68,8 +68,8 @@ module OmniAuth
           fields = %w(id name emails age gender currentLocation thumbnailUrl)
           request_url = "http://opensocial.nk-net.pl/v09/social/rest/people/@me?fields=#{fields.join(',')}&nk_token=#{credentials['token']}"
 
-          consumer = OAuth::Consumer.new(options.client_id, options.client_secret, {:site => 'http://opensocial.nk-net.pl'})
-          @raw_info = MultiJson.decode(OAuth::AccessToken.new(consumer, credentials['token']).get(request_url).body.to_s)
+          consumer = ::OAuth::Consumer.new(options.client_id, options.client_secret, {:site => 'http://opensocial.nk-net.pl'})
+          @raw_info = MultiJson.decode(::OAuth::AccessToken.new(consumer, credentials['token']).get(request_url).body.to_s)
         end
         @raw_info
       end
